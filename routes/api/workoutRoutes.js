@@ -2,8 +2,9 @@ const router = require("express").Router();
 const db = require("../../models");
 
 //get last workout function()
-router.get("/workouts", (req, res) => {
+router.get("/", (req, res) => {
   db.Workout.find()
+    .populate("exercises")
     .then((data) => {
       res.json(data);
     })
@@ -15,30 +16,28 @@ router.get("/workouts", (req, res) => {
 
 //add Exercise
 //this is where we pick between cardio and resistance
-router.post("/workouts/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
   console.log("added exercise", req.body);
-  db.Workout.update(req.body, (error, data) => {
-    {
-      _id: mongojs.ObjectId(req.params.id);
-    }
-    //not sure about what to set here.
-    // {
-    //   $set: {
-    //     title: req.body.title,
-    //     note: req.body.note,
-    //     modified: Date.now()
-    //   }
-    if (error) {
-      res.send(error);
-    } else {
-      res.send(data);
-    }
-  });
+  try {
+    const exercise = await db.Exercise.create(req.body);
+    const workout = await db.Workout.findOneAndUpdate(
+      {
+        _id: req.params.id,
+      },
+      {
+        $push: { exercises: exercise._id },
+      }
+    );
+    res.json(workout);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
 });
 
 //create a workout function ()
-router.post("/workouts", (req, res) => {
-  db.Exercise.insert(req.body)
+router.post("/", (req, res) => {
+  db.Workout.create(req.body)
     .then((data) => {
       console.log(data);
       res.json(data);
@@ -51,8 +50,9 @@ router.post("/workouts", (req, res) => {
 
 //get workouts in range function ()
 
-router.get("/workouts/range", (req, res) => {
+router.get("/range", (req, res) => {
   db.Workout.find()
+    .populate("exercises")
     .then((data) => {
       res.json(data);
     })
