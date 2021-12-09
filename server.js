@@ -14,8 +14,8 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-const databaseUrl = "notetaker";
-const collections = ["notes"];
+const databaseUrl = "dbworkout";
+const collections = ["workout"];
 
 const db = mongojs(databaseUrl, collections);
 
