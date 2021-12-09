@@ -3,7 +3,7 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -14,12 +14,7 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-const databaseUrl = "dbworkout";
-const collections = ["workout"];
-
-const db = mongojs(databaseUrl, collections);
-
-//mongoose connecting tyo database
+//mongoose connecting to database
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
   useFindAndModify: false,

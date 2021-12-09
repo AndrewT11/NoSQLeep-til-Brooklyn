@@ -1,13 +1,22 @@
-getLastWorkout();
-
+//get last workout function()
 app.get("./workouts");
 db.workout.find();
 
-addExercise(data);
-
-app.post("./workouts", (req, res) => {
+//add Exercise
+//this is where we pick between cardio and resistance
+app.post("./workouts/:id", (req, res) => {
   console.log("added exercise", req.body);
   db.workout.update(req.body, (error, data) => {
+    {
+      _id: mongojs.ObjectId(req.params.id);
+    }
+    //not sure about what to set here.
+    // {
+    //   $set: {
+    //     title: req.body.title,
+    //     note: req.body.note,
+    //     modified: Date.now()
+    //   }
     if (error) {
       res.send(error);
     } else {
@@ -16,12 +25,11 @@ app.post("./workouts", (req, res) => {
   });
 });
 
-createWorkout((data = {}));
-
+//create a workout function ()
 app.post("./workouts");
 db.workout.insert;
 
-getWorkoutsInRange();
+//get workouts in range function ()
 
 app.get("./workouts/range");
 db.workout.find();
