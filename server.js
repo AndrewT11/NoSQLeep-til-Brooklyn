@@ -19,7 +19,8 @@ const collections = ["notes"];
 
 const db = mongojs(databaseUrl, collections);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget", {
+//mongoose connecting tyo database
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
   useFindAndModify: false,
 });
