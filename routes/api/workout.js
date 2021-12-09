@@ -7,7 +7,7 @@ addExercise(data);
 
 app.post("./workouts", (req, res) => {
   console.log("added exercise", req.body);
-  db.workout.insert(req.body, (error, data) => {
+  db.workout.update(req.body, (error, data) => {
     if (error) {
       res.send(error);
     } else {
@@ -28,6 +28,7 @@ db.workout.find();
 
 module.exports = router;
 
+//public/api.js fetches to build routes off of
 const API = {
   async getLastWorkout() {
     let res;
