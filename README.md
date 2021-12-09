@@ -12,12 +12,10 @@ You are important.
 
 Before running this program:
 
-1. Clone repository <br>
-2. Run "npm init -y" in your command line<br>
-3. Run "npm install" in your command line<br>
-4. Run "npm start" or "node server.js" in your command line<br>
-5. Go to http://localhost:3001 in your browser<br>
-6. Enjoy making notes
+1. Click on Deployed Website Link provided in links<br>
+2. Click Add Exercise<br>
+3. Fill out fields and add more Exercises or complete!<br>
+4. Enjoy tracking your Fitness!
 
 ## Acceptance Criteria
 
@@ -35,13 +33,11 @@ The user should be able to:
 
 ## Media
 
-![NoSQL-til-BrooklynMainPage](./Assets/)
-
-Heroku deployed app link: https://easy-note-taker0.herokuapp.com/
+![NoSQL-til-BrooklynMainPage](./Assets/FitnessTrackerNewExercise.png)
 
 ## Links
 
-- [Deployed Website Link](https://andrewt11.github.io/NoSQL-til-Brooklyn/)
+- [Deployed Website Link](https://nosqltilbrooklyn.herokuapp.com/?id=61b28250d48ede001620d134)
 - [Code Repository Link](https://github.com/AndrewT11/NoSQL-til-Brooklyn/)
 
 ## Credits
