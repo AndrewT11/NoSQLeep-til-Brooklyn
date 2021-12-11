@@ -15,7 +15,6 @@ router.get("/", (req, res) => {
 });
 
 //add Exercise
-//this is where we pick between cardio and resistance
 router.put("/:id", async (req, res) => {
   console.log("added exercise", req.body);
   try {
@@ -34,6 +33,19 @@ router.put("/:id", async (req, res) => {
     res.json(err);
   }
 });
+
+// db.exercise.aggregate( [
+//   {
+//     $addFields: {
+//       totalDuration: { $sum: "$duration" } ,
+
+//     }
+//   },
+//   {
+//     $addFields: { totalScore:
+//       { $add: [ "$totalHomework", "$totalQuiz", "$extraCredit" ] } }
+//   }
+// ] )
 
 //create a workout function ()
 router.post("/", (req, res) => {
