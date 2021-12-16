@@ -1,9 +1,23 @@
 const router = require("express").Router();
 const db = require("../../models");
 
+//aggregate to find total duration. need to figure out.
+// .aggregate([
+//   {
+//     $addFields: {
+//       totalDuration: { $sum: "$exercise.duration" },
+//     },
+//   },
 //get last workout function()
 router.get("/", (req, res) => {
   db.Workout.find()
+    // .aggregate([
+    //   {
+    //     $addFields: {
+    //       totalDuration: { $sum: "$Exercise.duration" },
+    //     },
+    //   },
+    // ])
     .populate("exercises")
     .then((data) => {
       res.json(data);
@@ -33,19 +47,6 @@ router.put("/:id", async (req, res) => {
     res.json(err);
   }
 });
-
-// db.exercise.aggregate( [
-//   {
-//     $addFields: {
-//       totalDuration: { $sum: "$duration" } ,
-
-//     }
-//   },
-//   {
-//     $addFields: { totalScore:
-//       { $add: [ "$totalHomework", "$totalQuiz", "$extraCredit" ] } }
-//   }
-// ] )
 
 //create a workout function ()
 router.post("/", (req, res) => {
