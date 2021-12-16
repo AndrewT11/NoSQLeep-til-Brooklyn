@@ -52,16 +52,17 @@ router.post("/", (req, res) => {
     });
 });
 
-/get workouts in range function
+//get workouts in range function
 router.get("/range", (req, res) => {
   db.Workout.aggregate([
     {
       $addFields: {
         totalDuration: { $sum: "$exercises.duration" },
+        totalWeight: { $sum: "$exercises.weight" },
       },
     },
   ])
-    .sort({ day: 1 })
+    .sort({ date: -1 })
     .then((data) => {
       res.json(data);
     })
@@ -70,8 +71,5 @@ router.get("/range", (req, res) => {
       res.json(err);
     });
 });
-
-// module.exports = router;
-
 
 module.exports = router;
