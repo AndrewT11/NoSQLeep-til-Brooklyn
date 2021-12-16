@@ -44,7 +44,9 @@ The user should be able to:
 
 - Andrew Tran
 - Corbin Ball
+- Valerie Brisendine
 - BCS Tutor Andrew Hardemon
+- BCS Assistant
 
 ### Resources
 

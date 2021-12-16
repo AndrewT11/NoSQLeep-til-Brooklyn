@@ -10,6 +10,29 @@ router.get("/", (req, res) => {
       },
     },
   ])
+    // .limit(7)
+    // .sort({ date: 1 })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json(err);
+    });
+});
+
+//get workouts in range function
+router.get("/range", (req, res) => {
+  db.Workout.aggregate([
+    {
+      $addFields: {
+        totalDuration: { $sum: "$exercises.duration" },
+        totalWeight: { $sum: "$exercises.weight" },
+      },
+    },
+  ])
+    // .limit(7)
+    // .sort({ date: 1 })
     .then((data) => {
       res.json(data);
     })
@@ -44,26 +67,6 @@ router.post("/", (req, res) => {
   db.Workout.create(req.body)
     .then((data) => {
       console.log(data);
-      res.json(data);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.json(err);
-    });
-});
-
-//get workouts in range function
-router.get("/range", (req, res) => {
-  db.Workout.aggregate([
-    {
-      $addFields: {
-        totalDuration: { $sum: "$exercises.duration" },
-        totalWeight: { $sum: "$exercises.weight" },
-      },
-    },
-  ])
-    .sort({ date: -1 })
-    .then((data) => {
       res.json(data);
     })
     .catch((err) => {
